@@ -4,6 +4,7 @@ import {Pagination, Users} from '../shared/users.interface';
 import {UsersService} from '../shared/users.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-stats',
@@ -32,7 +33,9 @@ export class UserListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {
+
+
   }
 
   ngOnInit(): void {
@@ -76,5 +79,11 @@ export class UserListComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log('event pageSize ', this.pageSize);
     this.page = 1;
     this.getUsers();
+  }
+
+  gotoUser(names): void {
+    this.usersService.changeMessage(names);
+    // this.router.navigate(['./user', id, {name: names}], {relativeTo: this.route, skipLocationChange: true});
+    // this.router.navigate(['./user', id], {relativeTo: this.route, queryParams: { name: names } });
   }
 }

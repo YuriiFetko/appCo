@@ -8,7 +8,12 @@ const routes: Routes = [
     path: '', component: UserListComponent,
   },
   {
-    path: 'user/:id', component: UserPageComponent
+    path: 'user/:id', component: UserPageComponent,
+    data: {
+      breadcrumb: {
+        alias: 'test'
+      }
+    }
   },
   {
     path: '**', redirectTo: '', pathMatch: 'full'

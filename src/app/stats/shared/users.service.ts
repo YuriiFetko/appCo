@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, range} from 'rxjs';
+import {BehaviorSubject, Observable, of, range} from 'rxjs';
 import {Users} from './users.interface';
 import {HttpClient} from '@angular/common/http';
 import {catchError, pluck} from 'rxjs/operators';
@@ -8,6 +8,13 @@ import {catchError, pluck} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsersService {
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
+
+  changeMessage(message: string): void {
+    console.log(message);
+    this.messageSource.next(message);
+  }
 
   constructor(private http: HttpClient) {
   }
