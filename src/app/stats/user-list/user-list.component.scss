@@ -1,0 +1,7 @@
+.my-pagination ::ng-deep .ellipsis {
+  display: none;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .ellipsis + li  {
+  display: none;
+}
