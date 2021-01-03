@@ -1,7 +1,37 @@
-<h3>{{userName}}</h3>
-<xng-breadcrumb></xng-breadcrumb>
+<!--<app-header></app-header>-->
+<div class="user">
+  <div class="user__breadcrumb">
+    <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+  </div>
 
-<h1>йоб твою мать це пізда {{test}}</h1>
-<pre>
-  {{user$ | async | json}}
-</pre>
+  <ng-template #iconTemplate>
+    <mat-icon>chevron_right</mat-icon>
+  </ng-template>
+
+  <h2 class="user__title">{{userName}}</h2>
+
+  <div class="user__form">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="rangeForm" [rangePicker]="picker">
+        <input matStartDate formControlName="fromDate" placeholder="Start date"
+               (dateChange)="changeDate(rangeForm.value)">
+        <input matEndDate formControlName="toDate" placeholder="End date"
+               (dateChange)="changeDate(rangeForm.value)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="rangeForm.controls.fromDate.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="rangeForm.controls.toDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="chart">
+    <h3 class="chart__title">Clicks</h3>
+    <canvas id="clicks"></canvas>
+  </div>
+  <div class="chart">
+    <h3 class="chart__title">Views</h3>
+    <canvas id="views"></canvas>
+  </div>
+</div>

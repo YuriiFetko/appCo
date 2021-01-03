@@ -7,11 +7,11 @@ import {BreadcrumbModule} from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [MainComponent],
-    imports: [
-        MainRoutingModule,
-        SharedModule,
-        BreadcrumbModule
-    ]
+  imports: [
+    MainRoutingModule,
+    SharedModule,
+    BreadcrumbModule
+  ]
 })
 export class MainModule {
 }

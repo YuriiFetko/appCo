@@ -2,6 +2,10 @@
   display: none;
 }
 
-.my-pagination ::ng-deep .ngx-pagination .ellipsis + li  {
+.my-pagination ::ng-deep .ngx-pagination .ellipsis + li {
   display: none;
+}
+
+:host ::ng-deep .header {
+  color: blue;
 }

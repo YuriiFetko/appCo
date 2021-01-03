@@ -2,6 +2,7 @@
 <xng-breadcrumb></xng-breadcrumb>
 <h2>Users statistics</h2>
 
+
 <div class="mat-elevation-z8" *ngIf="users; else loading">
   <table mat-table [dataSource]="users | paginate : {
   itemsPerPage: pageSize,
@@ -14,11 +15,9 @@
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef>Id</th>
       <td mat-cell *matCellDef="let user"
-          [routerLink]="['user', user.id]" (click)="gotoUser(user.firstName)"> {{user.id}}
+          [routerLink]="['user', user.id, {name: user.firstName}]"> {{user.id}}
       </td>
 
-      <!--      <td mat-cell *matCellDef="let user"-->
-      <!--          (click)="gotoUser(user.id, user.firstName)"> {{user.id}} </td>-->
     </ng-container>
 
     <!-- Name Column -->

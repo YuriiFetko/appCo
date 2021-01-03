@@ -1,20 +1,14 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, of, range} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Users} from './users.interface';
 import {HttpClient} from '@angular/common/http';
-import {catchError, pluck} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private messageSource = new BehaviorSubject('default message');
-  currentMessage = this.messageSource.asObservable();
 
-  changeMessage(message: string): void {
-    console.log(message);
-    this.messageSource.next(message);
-  }
 
   constructor(private http: HttpClient) {
   }
@@ -29,9 +23,17 @@ export class UsersService {
     // );
   }
 
-  getUser(id, date?): any {
-    return this.http.get<any>(`http://174.138.34.176:8080/task/api/v1/users/statistic?id=${id}&from=2018-01-06&to=2020-10-02`);
+  getUser(id, date): any {
+    return this.http.get<any>(`http://174.138.34.176:8080/task/api/v1/users/statistic?id=${id}&from=${date.fromDate}&to=${date.toDate}`);
   }
 
-
+  // getUser(id, date?): any {
+  //   return this.http.get<any>(`http://174.138.34.176:8080/task/api/v1/users/statistic?id=${id}&from=2019-10-10&to=2019-10-15`)
+  //     .pipe(
+  //       catchError((err) => {
+  //         console.log(err);
+  //         return [];
+  //       })
+  //     );
+  // }
 }

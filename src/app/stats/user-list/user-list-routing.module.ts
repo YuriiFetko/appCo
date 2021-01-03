@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'user/:id', component: UserPageComponent,
     data: {
       breadcrumb: {
-        alias: 'test'
+        alias: 'user'
       }
     }
   },

@@ -1,0 +1,25 @@
+.user {
+  &__breadcrumb {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 32px;
+    color: #1A1A1A;
+    margin-bottom: 24px;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.chart {
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    color: #1A1A1A;
+  }
+}
