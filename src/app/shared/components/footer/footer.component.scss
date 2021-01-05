@@ -1,0 +1,41 @@
+@import "src/styles/styles";
+
+.footer_bg {
+  background-color: #1C3B55;
+  //height: 57px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFFFFF;
+  @include sm {
+    flex-direction: column;
+  }
+
+  &__logo {
+    margin: 14px 0;
+    font-size: 24px;
+
+    @include sm {
+      font-size: 22px;
+      margin: 5px 0;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+
+    @include sm {
+      font-size: 12px;
+      margin: 3px 0;
+    }
+
+    &:last-child{
+      @include sm{
+        margin-bottom: 10px
+      }
+    }
+  }
+}

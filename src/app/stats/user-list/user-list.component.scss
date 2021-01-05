@@ -4,6 +4,10 @@
   display: none;
 }
 
+.my-pagination ::ng-deep .responsive {
+  padding-right: 30px;
+}
+
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: #3A80BA;
   border-radius: 8px;
@@ -237,9 +241,6 @@
 //  text-transform: uppercase;
 //}
 
-.footer-block_bottom {
-  margin-top: -100px;
-}
 @include md {
   table {
     border: 0;
