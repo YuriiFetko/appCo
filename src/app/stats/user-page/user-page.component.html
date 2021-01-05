@@ -28,13 +28,18 @@
           <mat-error *ngIf="rangeForm.controls.toDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
         </mat-form-field>
       </div>
-      <div class="chart">
-        <h3 class="chart__title">Clicks</h3>
-        <canvas id="clicks"></canvas>
+      <div *ngIf="errorMessage" class="user__error">
+        <h2>There is an error, please re-enter the text in a different period of time.</h2>
       </div>
-      <div class="chart">
-        <h3 class="chart__title">Views</h3>
-        <canvas id="views"></canvas>
+      <div class="charts" [ngClass]="{hide_chart: errorMessage}">
+        <div class="chart">
+          <h3 class="chart__title">Clicks</h3>
+          <canvas id="clicks"></canvas>
+        </div>
+        <div class="chart">
+          <h3 class="chart__title">Views</h3>
+          <canvas id="views"></canvas>
+        </div>
       </div>
     </div>
   </div>

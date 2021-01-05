@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {from, Observable} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {UsersService} from '../shared/users.service';
 import {BreadcrumbService} from 'xng-breadcrumb';
 import {Chart} from 'node_modules/chart.js';
-import {catchError, map, takeWhile} from 'rxjs/operators';
 import * as moment from 'moment';
 import {FormControl, FormGroup} from '@angular/forms';
+import {DateArray} from '../shared/users.interface';
 
 
 @Component({
@@ -14,13 +14,17 @@ import {FormControl, FormGroup} from '@angular/forms';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit {
-  user$: Observable<any>;
-  userName;
-  userClick: any;
-  dates: any;
+export class UserPageComponent implements OnInit, OnDestroy {
 
-  // TODO uncomment this code і 6 юзер нічого не повертає
+  public userSub: Subscription;
+  public userName;
+  public dates: any;
+  public dateArray = [];
+  public errorMessage = false;
+
+  // TODO uncomment this code to get data for the last week from the current date
+  // TODO api doesn't return anything, falls on a timeout if you enter data for 2020
+  // TODO there are many such cases, for example: ID of the 6th user does not return anything
   // public paramsDate = {
   //   fromDate: moment().subtract(7, 'days').format('yyyy-MM-DD'),
   //   toDate: moment().format('yyyy-MM-DD')
@@ -36,7 +40,6 @@ export class UserPageComponent implements OnInit {
     toDate: new FormControl(this.paramsDate.toDate)
   });
 
-  dataArray = [];
 
   constructor(private usersService: UsersService,
               private route: ActivatedRoute,
@@ -50,47 +53,52 @@ export class UserPageComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy(): void {
+    if (this.userSub) {
+      this.userSub.unsubscribe();
+      this.userSub = null;
+    }
+  }
+
   getUser(): void {
     const userId = this.route.snapshot.paramMap.get('id');
-    this.usersService.getUser(userId, {fromDate: this.paramsDate.fromDate, toDate: this.paramsDate.toDate})
+    this.userSub = this.usersService.getUser(userId, {fromDate: this.paramsDate.fromDate, toDate: this.paramsDate.toDate})
       .subscribe(res => {
-        this.dataArray = this.getDates(this.paramsDate.fromDate, this.paramsDate.toDate);
-        console.log(this.dataArray);
-        console.log(res);
-        const a = res;
-        let result;
-        let testOOOO;
-        testOOOO = this.dataArray.map(i => {
-          console.log(result);
-          a.map(j => {
-            console.log(j);
-            if ((moment(i.date).format('yyyy-MM-DD') === moment(j.date).format('yyyy-MM-DD'))) {
-              console.log('t');
-              console.log(j.clicks);
-              result = {
-                clicks: j.clicks,
-                views: j.page_views,
-                date: i.date,
+        if (res === null) {
+          this.errorMessage = true;
+          return;
+        } else {
+          this.errorMessage = false;
+        }
+        const outputData = res;
+        this.dateArray = this.getDates(this.paramsDate.fromDate, this.paramsDate.toDate);
+
+        let statByDay;
+        let dataToChart;
+        dataToChart = this.dateArray.map(day => {
+          outputData.map(dayOutput => {
+            if ((moment(day.date).format('yyyy-MM-DD') === moment(dayOutput.date).format('yyyy-MM-DD'))) {
+              statByDay = {
+                clicks: dayOutput.clicks,
+                views: dayOutput.page_views,
+                date: day.date,
               };
             }
           });
-          if (!!result) {
-            return result;
+          if (!!statByDay) {
+            return statByDay;
           } else {
-            return i;
+            return day;
           }
         });
-        console.log(testOOOO);
-        this.chart(testOOOO);
+        this.drawChart(dataToChart);
       });
   }
 
-  chart(data): void {
-    console.log(data);
-    const date = data.map(i => i.date);
-    const clicks = data.map(i => i.clicks);
-    const views = data.map(i => i.views);
-    console.log(views);
+  drawChart(data): void {
+    const date = data.map(day => day.date);
+    const clicks = data.map(click => click.clicks);
+    const views = data.map(view => view.views);
 
     const chartClicks = new Chart('clicks', {
       type: 'line',
@@ -175,14 +183,13 @@ export class UserPageComponent implements OnInit {
         }
       }
     });
-
   }
 
-  getDates(startDate, stopDate): any {
+  getDates(startDate, stopDate): DateArray[] {
     const dateArray = [];
     let currentDate = moment(startDate);
-    const stopDat = moment(stopDate);
-    while (currentDate <= stopDat) {
+    const stopData = moment(stopDate);
+    while (currentDate <= stopData) {
       dateArray.push({
         clicks: 0,
         views: 0,
@@ -198,8 +205,6 @@ export class UserPageComponent implements OnInit {
       fromDate: moment(date.fromDate).format('YYYY-MM-DD'),
       toDate: moment(date.toDate).format('YYYY-MM-DD')
     };
-    console.log(this.paramsDate);
     this.getUser();
   }
-
 }

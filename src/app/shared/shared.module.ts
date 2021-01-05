@@ -8,11 +8,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
-import {HeaderComponent} from '../header/header.component';
 import {RouterModule} from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
 import {FooterComponent} from './components/footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HeaderComponent} from './components/header/header.component';
 
 
 @NgModule({
@@ -32,8 +32,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatNativeDateModule,
     MatButtonModule,
-    HeaderComponent,
     MatSelectModule,
+    HeaderComponent,
     FooterComponent
   ]
 })

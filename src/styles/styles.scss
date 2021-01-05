@@ -3,6 +3,7 @@
 @import "pagination";
 @import "mixins";
 @import "helpers";
+@import "breadcrumb";
 
 
 html, body {
@@ -31,25 +32,3 @@ body {
     padding: 0 10px;
   }
 }
-
-.xng-breadcrumb-root {
-  color: #cccccc;
-  text-decoration: none;
-}
-
-.xng-breadcrumb-separator {
-  color: #cccccc;
-  margin: 0 4px !important;
-  padding: 0 1px;
-}
-
-.xng-breadcrumb-link {
-  outline: none;
-  text-decoration: none !important;
-}
-
-.xng-breadcrumb-trail {
-  color: #3A80BA !important;
-}
-
-

@@ -7,7 +7,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {BreadcrumbModule} from 'xng-breadcrumb';
-import { HeaderComponent } from './header/header.component';
 import {SharedModule} from './shared/shared.module';
 
 @NgModule({

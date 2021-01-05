@@ -9,7 +9,15 @@ export interface Users {
   ipAddress: string;
 }
 
-export interface Pagination {
-  currentPage: number;
-  totalPages: number;
+export interface User {
+  userId: number;
+  views: number;
+  clicks: number;
+  date: string;
+}
+
+export interface DateArray {
+  clicks: number;
+  views: number;
+  date: string;
 }
