@@ -12,10 +12,19 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.content {
+  min-height: 100%;
+  padding-bottom: 100px;
+}
+
 .container {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+  box-sizing: border-box;
+  @include lg {
+    padding: 0 10px;
+  }
   @include md {
     padding: 0 10px;
   }

@@ -1,4 +1,63 @@
-<p>main works!</p>
-<app-header></app-header>
-<h2 routerLink="./user-statistics">stat</h2>
+<div class="content">
+  <div class="head-bg">
+    <div class="container">
+      <div class="head">
+        <div class="head__logo">AppCo</div>
 
+        <div class="head__title">
+          <span>Brainstorming</span> for desired perfect Usability
+        </div>
+
+        <div class="head__description">
+          Our design projects are fresh and simple and will benefit your business greatly. Learn more about our work!
+        </div>
+
+        <button class="head__view-stats" routerLink="./user-statistics">view state</button>
+
+        <div class="head__mobile">
+          <img src="assets/img/mobile.png" alt="mobile">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="main">
+      <h2 class="main__title"><span>Why </span>small business owners
+        love <span>AppCo?</span></h2>
+      <div class="main__desc">
+        <p>Our design projects are fresh and simple and will benefit your business greatly. Learn more about our
+          work!</p>
+      </div>
+
+      <div class="cards-wrap">
+        <div class="cards">
+          <div class="card" *ngFor="let card of cards">
+            <div class="cards__img">
+              <img [src]="card.img" alt="vector">
+            </div>
+            <h3 class="card__title">{{card.title}}</h3>
+            <p class="card__desc">{{card.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-block_bottom">
+  <div class="footer-bg">
+    <div class="container">
+      <div class="footer-wrap">
+        <div class="subscription">
+          <input class="subscription__input" placeholder="Enter your email">
+          <button class="subscription__button">Subscribe</button>
+        </div>
+        <div class="footer">
+          <div class="footer__logo">AppCo</div>
+          <div class="footer__rights">All rights reserved by ThemeTags</div>
+          <div class="footer__copyrights">Copyrights © 2019.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

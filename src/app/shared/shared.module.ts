@@ -10,11 +10,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {HeaderComponent} from '../header/header.component';
 import {RouterModule} from '@angular/router';
+import {MatSelectModule} from '@angular/material/select';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, FooterComponent],
   imports: [
     RouterModule
   ],
@@ -28,7 +30,9 @@ import {RouterModule} from '@angular/router';
     MatInputModule,
     MatNativeDateModule,
     MatButtonModule,
-    HeaderComponent
+    HeaderComponent,
+    MatSelectModule,
+    FooterComponent
   ]
 })
 export class SharedModule { }
