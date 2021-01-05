@@ -13,9 +13,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     UserListRoutingModule,
     SharedModule,
     NgxPaginationModule,
-    BreadcrumbModule,
-    FormsModule,
-    ReactiveFormsModule
+    BreadcrumbModule
   ]
 })
 export class UserListModule {

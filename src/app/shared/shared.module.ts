@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,8 +11,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {HeaderComponent} from '../header/header.component';
 import {RouterModule} from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
-import { FooterComponent } from './components/footer/footer.component';
-
+import {FooterComponent} from './components/footer/footer.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   exports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatDatepickerModule,
@@ -35,4 +37,5 @@ import { FooterComponent } from './components/footer/footer.component';
     FooterComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
