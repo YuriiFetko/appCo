@@ -1,0 +1,54 @@
+@mixin xxxl {
+  @include resize(2400) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @include resize(2048) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @include resize(1565) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @include resize(1259) {
+    @content;
+  }
+}
+
+@mixin md {
+  @include resize(1080) {
+    @content;
+  }
+}
+
+
+@mixin sm {
+  @include resize(767) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @include resize(599) {
+    @content;
+  }
+}
+
+@mixin ms {
+  @include resize(429) {
+    @content;
+  }
+}
+
+@mixin ss {
+  @include resize(329) {
+    @content;
+  }
+}

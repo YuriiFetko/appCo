@@ -3,10 +3,11 @@ import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'main', loadChildren: () => import('./main/main.module').then(mod => mod.MainModule)
+    path: '', redirectTo: 'main-page', pathMatch: 'full'
   },
   {
-    path: 'stats', loadChildren: () => import('./stats/stats.module').then(mod => mod.StatsModule)
+    path: 'main-page', loadChildren: () => import('./main/main.module').then(mod => mod.MainModule),
+    data: {breadcrumb: 'Main Page'}
   }
 ];
 

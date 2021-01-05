@@ -1,0 +1,40 @@
+@import "src/styles/styles";
+
+.user {
+  &__breadcrumb {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 32px;
+    color: #1A1A1A;
+    margin-bottom: 24px;
+    @include xs {
+      font-size: 26px;
+    }
+  }
+
+  &__error {
+    @include sm {
+      font-size: 14px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.chart {
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    color: #1A1A1A;
+  }
+}
+
+.hide_chart {
+  display: none;
+}

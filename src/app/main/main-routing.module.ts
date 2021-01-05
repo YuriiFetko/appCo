@@ -5,6 +5,10 @@ import {MainComponent} from './main.component';
 const routes: Routes = [
   {
     path: '', component: MainComponent
+  },
+  {
+    path: 'user-statistics', loadChildren: () => import('../stats/user-list/user-list.module').then(mod => mod.UserListModule),
+    data: {breadcrumb: 'User statistics'}
   }
 ];
 

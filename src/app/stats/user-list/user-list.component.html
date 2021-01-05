@@ -1,0 +1,80 @@
+<div class="content">
+  <app-header></app-header>
+  <div class="container">
+    <div class="users">
+      <div class="user__breadcrumb">
+        <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+      </div>
+
+      <ng-template #iconTemplate>
+        <mat-icon>chevron_right</mat-icon>
+      </ng-template>
+
+      <h2 class="users__title">Users statistics</h2>
+
+      <div class="users__range">
+        <mat-form-field appearance="fill">
+          <mat-label>Items per Page:</mat-label>
+          <mat-select (selectionChange)="handlePageSizeChange($event)">
+            <mat-option *ngFor="let size of pageSizes" [value]="size">
+              {{size}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="table_wrap">
+        <table class="table" *ngIf="users; else loading">
+          <thead>
+          <tr class="table__row--heading">
+            <th class="table__head">Id</th>
+            <th class="table__head">First name</th>
+            <th class="table__head">Last name</th>
+            <th class="table__head">Email</th>
+            <th class="table__head">Gender</th>
+            <th class="table__head">IP address</th>
+            <th class="table__head">Total clicks</th>
+            <th class="table__head">Total page views</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="table__row"
+              *ngFor="let user of users | paginate : {
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalItems: count
+        }"
+              [routerLink]="['user', user.id, {name: user.firstName + ' ' + user.lastName}]">
+            <td data-label="Id" class="table__data">{{ user.id }}</td>
+            <td data-label="First name" class="table__data">{{ user.firstName }}</td>
+            <td data-label="Last name" class="table__data">{{ user.lastName }}</td>
+            <td data-label="Email" class="table__data">{{ user.email }}</td>
+            <td data-label="Gender" class="table__data">{{ user.gender }}</td>
+            <td data-label="IP address" class="table__data">{{ user.ipAddress }}</td>
+            <td data-label="Total clicks" class="table__data">{{ user.totalClicks }}</td>
+            <td data-label="Total page views" class="table__data">{{ user.totalPageViews }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="users__pagination">
+        <pagination-controls
+          maxSize="7"
+          responsive="true"
+          previousLabel=""
+          nextLabel=""
+          (pageChange)="handlePageChange($event)" class="my-pagination"></pagination-controls>
+      </div>
+      <ng-template #loading>
+        <div class="users__loader">
+          <div class="loader"></div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="footer-block_bottom">
+  <app-footer></app-footer>
+</div>

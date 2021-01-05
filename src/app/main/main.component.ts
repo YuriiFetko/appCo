@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {cards} from './mocks';
 
 @Component({
   selector: 'app-main',
@@ -7,10 +8,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  public cards;
+
   constructor() {
   }
 
   ngOnInit(): void {
+    this.cards = cards;
   }
 
 }
